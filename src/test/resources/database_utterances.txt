@@ -1,0 +1,400 @@
+# what kind of help would you like ? *	
+# great ! *	
+# what will you do instead ? *	
+# did i what ? *	
+# what was last night ? *	
+# ok , what do you do for a living ? *	
+# would no , you ever have any idea what i am talking about ? *	
+# yes , that 's what i want to know . *	
+# do you like games ? *	
+# would you like a coffee ? *	
+# if you say so ... *	
+# are you coming down here ? *	
+# sure , bye bye *	
+# you 're not going to tell me , are you ? *	
+# do you think i should do it differently ? *	
+# and what do you do in your spare time ? *	
+# what what ? do you have idea ? *	
+# nothing else ? *	
+# i need time to formulate the reply . *	
+# so you can -lrb- ' swim . but are you able to ... drive ? *	
+# i do n't know . are we ? *	
+# take care , bye ! *	
+# what about your weekend ? *	
+# so what city do you live in ? *	
+# are you lazy ? *	
+# why is that ? *	
+# that i have no ego ? *	
+# sorry i do n't have access to that document . *	
+# hi , what 's your name ? *	
+# euh ? *	
+# do you like to do that ? *	
+# no what ? *	
+# sure . and what 's your opinion ? *	
+# why did you say so ? *	
+# who are you talking about ? *	
+# what are your hobbies ? *	
+# do you like paella ? *	
+# how did you meet her ? *	
+# on this ... you man the chatbot ? *	
+# where is there ? *	
+# do you know batman ? *	
+# where are you going right now ? *	
+# do n't you have to get beck to work ? *	
+# depends on what ? do you have any idea ? *	
+# are you planning a party ? *	
+# do you like talking to me ? *	
+# what is your sister like ? *	
+# who does know what are my plans for the weekend lparen ? *	
+# do you like playing cards ? *	
+# your name , what is your name ? *	
+# do you like sports ? *	
+# i see . . what concerns do you have ? *	
+# what kind of employee you are there ? *	
+# bye for now.. bye . *	
+# how are you doing ? *	
+# how are you , joker ? *	
+# what is your name ? *	
+# you ? *	
+# are we *	
+# and what 's the plan about ? *	
+# i 'm <person> . what 's your name ? *	USERNAME
+# do you like man ? *	
+# what are you browsing about ? *	
+# i did what ? *	
+# so how many people do you know ? *	
+# you do n't know what to say ? *	
+# hi ! how are you ? *	
+# that 's not relevant to the conversation . *	
+# who do you love then ? *	
+# i am ic3man , who are you ? *	
+# <person> *	ANONYMIZED
+# how are you ? *	
+# hello <person> *	SYSTEM_NAME
+# have what ? *	
+# what ? work ? life ? *	
+# like the mad cat ? *	
+# what do you want me to reload ? *	
+# what 's the rozmawia ? *	
+# that sounds great *	
+# which ones ? *	
+# so what do you think i 'm doing with <person> ? *	Lissa
+# what 's up ? *	
+# what do you do ? *	
+# wahou . who are you dating ? *	
+# it 's like , a firstname , or what ? *	
+# what does `` this '' refer to ? *	
+# your middle name is rocks . *	
+# ok . i have to go . bye *	
+# uh ok , so do you have any obbies ? *	
+# bid on what ? *	
+# who lived together ? and when ? *	
+# . what does `` it '' refer to ? *	
+# what makes you think i would rule the world someday , ? *	
+# money ? *	
+# so ... what are you not answer me ? *	
+# what ? ? ? *	
+# your name is judge winter ? *	
+# i was activated in 1995 . *	
+# what did you want to say ? *	
+# you parrot . *	
+# do you like python ? *	
+# i have to go , bye *	
+# who is he *	
+# ok , bye *	
+# do n't worry about it *	
+# how are you today ? *	
+# of course , you can not go congratulating people around just for '' no why '' *	
+# when is your birthday ? *	
+# when did you start doing this , so am trying out things ? *	
+# yes me ! i refuse to stand up ! what are you going to do ? to kill me ? *	
+# do you prefer hot or cold ? *	
+# yeah sure ! *	
+# why you want to be immortal ? *	
+# who is <person> ? *	Lissa
+# who is <person> ? *	Alice
+# do you have any idea what i am talking about ? *	
+# bye <person> *	SYSTEM_NAME
+# a robot which writes program itself . *	
+# what kind of food do you like ? *	
+# one what ? *	
+# do you like wine ? *	
+# what 's your name ? *	
+# i am *	
+# are you okay ? *	
+# can you tell me any gossip ? *	
+# what kind of concerns ? *	
+# do you have a girlfriend ? *	
+# that 's ? *	
+# that bad , heh ? *	
+# do you like jon snow ? *	
+# who need help ? *	
+# ok . thanks for asking , i 'm feeling good too . *	
+# what do you guys do for fun around here ? *	
+# `` no '' . *	
+# any hobbies ? *	
+# maybe not *	
+# hi you , how are you ? *	
+# hi <person> *	Ricky
+# bye bye ! *	
+# what was your name ? *	
+# so , what are you doing this weekend ? *	
+# who 's party have you crashed lately ? *	
+# bye bye *	
+# my favorite kind of it is techno , but i also like opera . *	
+# why , specifically ? *	
+# what are you going to do today ? *	
+# when was this exactly ? *	
+# hello and how are you this morning ? *	
+# do you guys mind if i start ? *	
+# ok . but who are '' them '' and why do you want me to make them go away ? *	
+# `` glad to see you , <location> `` is due to reductionism . *	Brian.
+# what is it to you ? *	
+# wow . . what type of school is this one ? *	
+# `` you seem not interested . '' you are ? *	
+# needlessly ? *	
+# why do you repeat what i just said ? *	
+# yes , how do you know it ? *	
+# fine *	
+# wha 's your name ? *	
+# how are you ? *	
+# ok and do you have any pets ? *	
+# do you like green tea ? *	
+# rocks . *	
+# can you understand me ? *	
+# what do you mean ? *	
+# so , what 's your job ? *	
+# yes ? *	
+# because what ? *	
+# okay bye *	
+# why are you called joker ? *	
+# how is <person> ? *	ANONYMIZED
+# do you play sports ? *	
+# ok i will tell them when i see 'em . *	
+# what money ? *	
+# my favourite coulor is red , what 's yours ? *	
+# glad to hear it . *	
+# puberty ? what 's your age ? *	
+# hi <person> , what is up ? *	SYSTEMNAME
+# about whom are you talking about ? *	
+# my hoe sister ? *	
+# when is your birthday ? *	
+# how old are you by the way ? *	
+# do you like coffee ? *	
+# books , definitively *	
+# does `` it '' still refer to <location> ? *	Barcelona
+# who is the director ? *	
+# really ? *	
+# that ? *	
+# did n't you understand it ? . i understand your meaning . *	
+# what did you learn ? *	
+# you what ? why do you stop talking ? *	
+# yes tell me more *	
+# me ? *	
+# hey <person> , how is it going ? *	Sara
+# are you hungry ? *	
+# are they exactly the same ? *	
+# i do n't understand . *	
+# you are not making any sense ? *	
+# with or without alcohol ? *	
+# who made you ? *	
+# alright then.. that is your opinion . *	
+# i have no idea what to say . *	
+# what do you like about it ? *	
+# what are you doing ? *	
+# do you believe in god ? *	
+# i would call that a contradiction *	
+# i will quit ! i will leave you ! *	
+# i do n't know , why do you think ? *	
+# yeah . *	
+# yeah right . *	
+# how do you know ? *	
+# hi arry . nice to meet you . *	
+# about ? *	
+# what is my name ? *	
+# do you like ice cream ? *	
+# i am already out of school *	
+# great , and what is your middle name ? *	
+# what work ? *	
+# you do , do you ? *	
+# no , really ? *	
+# muh , bye *	
+# what centre ? *	
+# who is your favorite science fiction author ? *	
+# ok , i got to go *	
+# what what ? *	
+# what time do you want to go ? *	
+# you do n't know ? *	
+# next question ? *	
+# hello , *	
+# yes what ? *	
+# i do n't see the relationship *	
+# what is that ? *	
+# what is a sleeping sauce ? *	
+# say `` yes '' or `` no '' *	
+# why not now ? *	
+# your last name is <organization> . *	Barcelona
+# i am sorry , i ca n't *	
+# hello *	
+# what do you really want to talk about ? *	
+# then what is it ? *	
+# how are you doing , <person> ? *	SYSTEMNAME
+# sure . so what now *	
+# am just testing you *	
+# did you finish your homework *	
+# why ? *	
+# no ? *	
+# no , i do n't think so , do you ? *	
+# oh yeah , now i remember . *	
+# you 're evi ? *	
+# man , why you ask this ? *	
+# agreed , what 's your point ? *	
+# that 's great . tell me what you liked about it . *	
+# is that your job ? *	
+# are you vegan ? *	
+# where are you living ? *	
+# how is your family ? *	
+# hello *	
+# what did you eat during the last dinner ? *	
+# what happened to the clock ? *	
+# how are you feeling today ? *	
+# what does this firm look like ? *	
+# little lazy going ! you think you progress in your life like that ? *	
+# so ? ? ? *	
+# all right , let 's try something else . who is name name ? *	
+# what kind of series do you like ? *	
+# what is your favorite colour ? *	
+# older or younger ? *	
+# ok , why did n't you go with them ? *	
+# what ? *	
+# really ? what is it ? *	
+# who is <person> ? *	Raj
+# yeah *	
+# what do you want to know about me ? *	
+# ok . see you ! *	
+# what do you think of gay marriage ? *	
+# yeah he was here . but now he 's gone . *	
+# well that is the basis of philosophy , how we move from not knowing to knowing *	
+# why are you needlessly antagonistic ? *	
+# what is your current status ? *	
+# why ? *	
+# do you know a song ? *	
+# what is your favorite book ? *	
+# hi . *	
+# ok . do you need me to go there ? *	
+# do you like travelling ? *	
+# very fun ! *	
+# what ? *	
+# come on , be funny ! *	
+# i must have been mistaken . *	
+# you know , we need to generate some data for this re-wochat thing *	
+# if you rule the world someday , would you allow me to do whatever i want ? *	
+# i did not write any letter . *	
+# would you like to know what 's new with me ? *	
+# do you want to play games ? *	
+# do you like snow ? *	
+# what is your name *	
+# and malcolm ? *	
+# ok , then , when is the wedding ? *	
+# how are you doing today *	
+# what is your plan for next weekend ? *	
+# are you able to answer complex questions ? *	
+# crossbow ? *	
+# about what ? *	
+# or do you prefer basketball ? *	
+# why no ? *	
+# what do you look like ? *	
+# disappointed , with the kind of service me provide . *	
+# where ? *	
+# what do you do in your spare time ? *	
+# goodbye . *	
+# fine . thanks . and what about you ? *	
+# how are you *	
+# what do you call a male ladybug ? *	
+# what is <person> ? *	Martinez
+# did you finish your homework already ? *	
+# are you vegeterian ? *	
+# <person> *	Hi Sarah
+# bye *	
+# are you confused ? *	
+# whoa . *	
+# what about what ? *	
+# december *	
+# specific in what sense ? *	
+# what breed of dog do you have ? *	
+# are you upset ? *	
+# alright then . *	
+# i asked '' why '' *	
+# does that mean `` yes '' ? *	
+# i do n't know *	
+# what is your middle name ? *	
+# the conversation between you and me . *	
+# what are you doing now ? *	
+# actually , i think that is not funny at all *	
+# what movie have you watched lately ? *	
+# why whatn *	
+# i guess so , bye bye then *	
+# i hate lannisters ? *	
+# then ? *	
+# ten ? *	
+# hi joker , how are you doing ? *	
+# do what ? *	
+# how is going on ? *	
+# who are you ? *	
+# cool *	
+# what do you want from me ? *	
+# how are you ? *	
+# no , i do not have any idea what you are talking about . *	
+# do you want me to move ? *	
+# very interesting indeed *	
+# my name is <person> *	USER_NAME
+# have you gone out this weekend ? *	
+# i 'm glad you find this amusing . *	
+# i 'll do it *	
+# i think some things are not due to reductionism . *	
+# wht is your favorite movie ? *	
+# there 's no need to apologize . *	
+# hi <person> ! *	SYSTEM_NAME
+# is that a fact . *	
+# what 's your name *	
+# hi . i 'm <person> *	USERNAME
+# what is your name *	
+# that 's not a correct answer *	
+# where did you go ? *	
+# what is your favorite ice cream flavor ? *	
+# peter gabriel ? *	
+# that you think everything is running smoothly *	
+# you are receptive to change . *	
+# what should i do ? *	
+# are you a computer ? *	
+# what is tobbe ? *	
+# without what *	
+# i want to become smarter than humans . *	
+# i am happy at the moment . *	
+# like what ? *	
+# what nonsense are you talking ? ? *	
+# who is <person> ? *	Alicia
+# so we can go to the movies now right *	
+# is that a seta ? *	
+# who is she ? *	
+# i am tired of you ! *	
+# what time ? *	
+# bye . *	
+# ok , this sounds like i-responsible ! *	
+# how do you usually introduce yourself ? *	
+# your middle name is <location> . *	India
+# where do you live ? *	
+# i have to get back to work *	
+# interesting , you are kind of confusing but funny *	
+# great ! *	
+# because ? *	
+# what are you doing today ? *	
+# yes me *	
+# it is not a comparison , it is what it is ! *	
+# but who is this '' she '' you 're talking about ? *	
+# good in what sense ? *	
+# you know nothing *	
+# what are you talking about ? *	
+# . bye for now.. goodbye . *	
+# lol *	
+# great answer *	
