@@ -9,8 +9,8 @@ val scalameter = "com.storm-enroute" %% "scalameter" % "0.8.2" % "test"
 
 
 lazy val commonSettings = Seq(
-  organization := "fr.limsi",
-  version := "2017.1-alpha",
+  organization := "com.github.guillaumedd",
+  version := "0.1",
   scalaVersion := "2.11.11",
   crossScalaVersions := Seq("2.11.11", "2.12.3")
 )
@@ -18,7 +18,7 @@ lazy val commonSettings = Seq(
 lazy val root = (project in file(".")).
   settings(commonSettings: _*).
   settings(
-    name := "generalizedSuffixTreeLib",
+    name := "gstlib",
     libraryDependencies += scalatest,
     libraryDependencies += logging_library,
     libraryDependencies += slf4j,
@@ -30,3 +30,41 @@ lazy val root = (project in file(".")).
   )
 
 scalacOptions ++= Seq("-deprecation", "-Ywarn-unused-import",  "-Ywarn-unused", "-Ywarn-dead-code", "-optimize")
+
+useGpg := true
+
+licenses := Seq("CeCILL-B" -> url("http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.html"))
+
+homepage := Some(url("https://github.com/GuillaumeDD/gstlib"))
+
+scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/GuillaumeDD/gstlib"),
+    "scm:git@github.com:GuillaumeDD/gstlib.git"
+  )
+)
+
+developers := List(
+  Developer(
+    id    = "GuillaumeDD",
+    name  = "Guillaume Dubuisson Duplessis",
+    email = "gdubuisson@limsi.fr",
+    url   = url("http://www.dubuissonduplessis.fr/")
+  )
+)
+
+publishMavenStyle := true
+
+publishArtifact in Test := false
+
+pomIncludeRepository := { _ => false }
+
+publishTo := {
+  val nexus = "https://oss.sonatype.org/"
+  if (isSnapshot.value)
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+}
+
+
