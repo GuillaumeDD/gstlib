@@ -210,6 +210,12 @@ Files to benchmark the code come from the repository:
 - Guillaume Dubuisson Duplessis (2016-2017)
 - Vincent Letard (2016)
 
+## Usage for Research Purposes ##
+
+If you use this library for  research purposes, please make reference to
+this library by citing the following paper:
+- Dubuisson Duplessis, G.; Charras, F.; Letard, V.; Ligozat, A.-L.; Rosset, S., **Utterance Retrieval based on Recurrent Surface Text Patterns**, 39th European Conference on Information Retrieval (ECIR), 2017, pp. 199--211 \[[More](https://hal.archives-ouvertes.fr/hal-01436052) [DOI](https://dx.doi.org/10.1007/978-3-319-56608-5_16)\]
+
 ## License ##
 
 CECILL-B - see the LICENSE file.
