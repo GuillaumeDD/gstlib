@@ -5,7 +5,7 @@ val scalameter = "com.storm-enroute" %% "scalameter" % "0.8.2" % "test"
 
 lazy val commonSettings = Seq(
   organization := "com.github.guillaumedd",
-  version := "0.1",
+  version := "0.1.1",
   scalaVersion := "2.11.11",
   crossScalaVersions := Seq("2.11.11", "2.12.3")
 )
