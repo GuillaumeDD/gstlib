@@ -200,7 +200,7 @@ This  project  includes benchmarks  to  assess  the efficiency  of  some
 algorithm (building of tree, solving  of the multiple common subsequence
 problem). Benchmarks can be executed via SBT:
 
-	$ sbt run
+	$ sbt test:run
 
 Files to benchmark the code come from the repository:
 [schmidda/ukkonen-suffixtree](https://github.com/schmidda/ukkonen-suffixtree).
