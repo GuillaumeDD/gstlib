@@ -135,6 +135,7 @@ trait GeneralizedSuffixTree[Alphabet, Repr] {
     * fully described in section 9.7 "A linear-time solution to the multiple
     * common substring problem" of Dan Gusfield's book "Algorithms on Strings,
     * Trees, and Sequences" (1997).
+    *
     * @return An iterator over the sequences along with their frequencies
     */
   def bulkMultipleCommonSubsequence(): Iterator[(Int, Repr)]
@@ -205,7 +206,58 @@ trait CommonSubsequences[Repr] {
 
 }
 
+object CommonSubsequences {
+  /**
+    * Represents a CommonSubsequences result for an empty generalized suffix tree
+    * @tparam Repr
+    * @return
+    */
+  def empty[Repr]: CommonSubsequences[Repr] =
+    new CommonSubsequences[Repr] {
+      override def occurrences: Set[Int] = Set.empty
+
+      override def longest(occ: Int): Int = 0
+
+      override def apply(occ: Int): Iterator[Repr] = Iterator.empty
+
+      override def nb(occ: Int): Int = 0
+    }
+}
+
 object GeneralizedSuffixTree {
+
+  /**
+    * Creates an empty generalized suffix tree
+    * @tparam Alphabet type of the items in the sequences
+    * @tparam Repr type of the sequences
+    * @return a new empty generalized suffix tree
+    */
+  def empty[Alphabet, Repr <% Sequence[Alphabet]]: GeneralizedSuffixTree[Alphabet, Repr] = new GeneralizedSuffixTree[Alphabet, Repr] {
+    def getSequenceBy(id: SequenceID): Repr =
+      throw new UnsupportedOperationException("Empty tree does not contain any sequence")
+
+    val size = 0
+
+    def fullSequences(): Iterator[Repr] = Iterator.empty
+
+    def suffixes(): Iterator[Repr] = Iterator.empty
+
+    val nSuffixes = 0
+
+    def findLongestCommonSubsequences(pattern: Repr): Seq[(Int, Int, Set[(SequenceID, Int)])] =
+      Seq.empty
+
+    def find(pattern: Repr): List[(SequenceID, Int)] = List.empty
+
+    def contains(pattern: Repr): Boolean = false
+
+    def multipleCommonSubsequence(): CommonSubsequences[Repr] =
+      CommonSubsequences.empty
+
+    def bulkMultipleCommonSubsequence(): Iterator[(Int, Repr)] =
+      Iterator.empty
+  }
+
   /**
     * Creates a generalized suffix tree with the specified sequences
     *
@@ -214,21 +266,25 @@ object GeneralizedSuffixTree {
     * @tparam Repr     type of the sequences
     * @return a new generalized suffix tree with the specified sequences
     */
-  def apply[Alphabet, Repr <% Sequence[Alphabet]](sequences: Repr*)(
-    implicit icbf: CanBuildFrom[Repr, Alphabet, Repr]): GeneralizedSuffixTree[Alphabet, Repr] = {
-    val stree = GeneralizedSuffixTreeBuilder.empty[Alphabet, Repr]()
-    for (item <- sequences) {
-      stree.insert(item)
-    }
+  def apply[Alphabet, Repr <% Sequence[Alphabet]](sequences: Repr*)(implicit icbf: CanBuildFrom[Repr, Alphabet, Repr]): GeneralizedSuffixTree[Alphabet, Repr] = {
+    if(sequences.nonEmpty) {
+      val stree = GeneralizedSuffixTreeBuilder.empty[Alphabet, Repr]()
 
-    stree
+      for (item <- sequences) {
+        stree.insert(item)
+      }
+
+      stree
+    } else {
+      GeneralizedSuffixTree.empty
+    }
   }
 
   /**
     * Creates a new builder for a generalized suffix tree
     *
     * @tparam Alphabet type of the items in the sequences
-    * @tparam Repr type of the sequences
+    * @tparam Repr     type of the sequences
     * @return a new builder for a generalized suffix tree
     */
   def newBuilder[Alphabet, Repr <% Sequence[Alphabet]](

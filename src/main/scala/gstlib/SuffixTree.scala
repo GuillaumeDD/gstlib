@@ -76,29 +76,53 @@ sealed trait SuffixTree[Alphabet, Repr] {
 
 object SuffixTree {
   /**
+    * Creates an empty suffix tree
+    * @tparam Alphabet type of an item
+    * @tparam Repr type of the sequence of items
+    * @return an empty suffix tree
+    */
+  def empty[Alphabet, Repr <% Sequence[Alphabet]] : SuffixTree[Alphabet, Repr] = {
+    new SuffixTree[Alphabet, Repr] {
+      def sequence = throw new UnsupportedOperationException("No available sequence in this empty suffix tree")
+
+      def suffixes(): Iterator[Repr] =
+        Iterator.empty
+
+      def find(pattern: Repr): List[Int] =
+        List.empty
+
+      def contains(pattern: Repr): Boolean =
+        false
+    }
+  }
+
+  /**
     * Builds a suffix tree from a sequence of items
     * @param seq sequence of items from which the suffix tree is built
     * @tparam Alphabet type of an item
     * @tparam Repr type of the sequence of items
     * @return a suffix tree of the given sequence
     */
-  def apply[Alphabet, Repr <% Sequence[Alphabet]](seq: Repr)(
-    implicit icbf: CanBuildFrom[Repr, Alphabet, Repr]): SuffixTree[Alphabet, Repr] = {
+  def apply[Alphabet, Repr <% Sequence[Alphabet]](seq: Repr)(implicit icbf: CanBuildFrom[Repr, Alphabet, Repr]): SuffixTree[Alphabet, Repr] = {
+    if(seq.nonEmpty) {
 
-    val stree = GeneralizedSuffixTreeBuilder.empty[Alphabet, Repr]()
-    stree.insert(seq)
+      val stree = GeneralizedSuffixTreeBuilder.empty[Alphabet, Repr]()
+      stree.insert(seq)
 
-    new SuffixTree[Alphabet, Repr] {
-      val sequence = seq
+      new SuffixTree[Alphabet, Repr] {
+        val sequence = seq
 
-      def suffixes(): Iterator[Repr] =
-        stree.suffixes()
+        def suffixes(): Iterator[Repr] =
+          stree.suffixes()
 
-      def find(pattern: Repr): List[Int] =
-        stree.find(pattern).map(_._2)
+        def find(pattern: Repr): List[Int] =
+          stree.find(pattern).map(_._2)
 
-      def contains(pattern: Repr): Boolean =
-        stree.contains(pattern)
+        def contains(pattern: Repr): Boolean =
+          stree.contains(pattern)
+      }
+    } else {
+      SuffixTree.empty
     }
   }
 }

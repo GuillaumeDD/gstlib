@@ -67,6 +67,19 @@ class GeneralizedSuffixTreeTest extends FunSuite {
 
   }
 
+  test("Special case: empty generalized suffix tree") {
+    val emptyTree = GeneralizedSuffixTree(List.empty[Array[String]] :_*)
+
+    assert(emptyTree.fullSequences().isEmpty)
+    assert(emptyTree.bulkMultipleCommonSubsequence().isEmpty)
+    assert(emptyTree.suffixes().isEmpty)
+
+    assert(emptyTree.nSuffixes() == 0)
+    assert(emptyTree.size() == 0)
+
+    assert(! emptyTree.contains(Array("")))
+  }
+
   test("contains") {
     new BuiltTree {
       assert(suffixes.forall(stree.contains(_)))
