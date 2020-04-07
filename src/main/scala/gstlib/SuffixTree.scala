@@ -39,7 +39,7 @@ package gstlib
 
 import gstlib.GeneralizedSuffixTreeBuilder.Sequence
 
-import scala.collection.generic.CanBuildFrom
+import scala.collection.Factory
 
 /**
   * Represents a generic suffix tree built from a sequence of items
@@ -103,7 +103,7 @@ object SuffixTree {
     * @tparam Repr type of the sequence of items
     * @return a suffix tree of the given sequence
     */
-  def apply[Alphabet, Repr <% Sequence[Alphabet]](seq: Repr)(implicit icbf: CanBuildFrom[Repr, Alphabet, Repr]): SuffixTree[Alphabet, Repr] = {
+  def apply[Alphabet, Repr <% Sequence[Alphabet]](seq: Repr)(implicit icbf: Factory[Alphabet, Repr]): SuffixTree[Alphabet, Repr] = {
     if(seq.nonEmpty) {
 
       val stree = GeneralizedSuffixTreeBuilder.empty[Alphabet, Repr]()

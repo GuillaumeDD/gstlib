@@ -36,10 +36,11 @@
  *
  */
 package gstlib
-import scala.collection.mutable
-import GeneralizedSuffixTreeBuilder.{ Sequence, SequenceID, TerminalSymbol, debugging }
+import scala.collection.{Factory, mutable}
+import GeneralizedSuffixTreeBuilder.{Sequence, SequenceID, TerminalSymbol, debugging}
+
 import scala.annotation.tailrec
-import scala.collection.generic.CanBuildFrom
+import scala.collection.Factory
 
 protected[gstlib] object InnerTree {
   val END: SequenceID = -1
@@ -62,7 +63,7 @@ protected[gstlib] object InnerTree {
    */
   sealed abstract class DefiniteLabel {
     def value[Alphabet, Repr <% Sequence[Alphabet]](
-      getSubsequence: ((SequenceID, Int, Int) => Repr))(implicit cbf: CanBuildFrom[Repr, Alphabet, Repr]): Repr
+      getSubsequence: ((SequenceID, Int, Int) => Repr))(implicit cbf: Factory[Alphabet, Repr]): Repr
     def length: Int
   }
 
@@ -71,7 +72,7 @@ protected[gstlib] object InnerTree {
       from: Int,
       to: Int) extends DefiniteLabel {
     def value[Alphabet, Repr <% Sequence[Alphabet]](
-      getSubsequence: ((SequenceID, Int, Int) => Repr))(implicit cbf: CanBuildFrom[Repr, Alphabet, Repr]): Repr =
+      getSubsequence: ((SequenceID, Int, Int) => Repr))(implicit cbf: Factory[Alphabet, Repr]): Repr =
       getSubsequence(sequenceID, from - 1, to)
 
     def length: Int = (to - from + 1)
@@ -83,8 +84,8 @@ protected[gstlib] object InnerTree {
   case class CompositeLabel(
       labels: List[SingleLabel]) extends DefiniteLabel {
     def value[Alphabet, Repr <% Sequence[Alphabet]](
-      getSubsequence: ((SequenceID, Int, Int) => Repr))(implicit cbf: CanBuildFrom[Repr, Alphabet, Repr]): Repr = {
-      val builder = cbf()
+      getSubsequence: ((SequenceID, Int, Int) => Repr))(implicit cbf: Factory[Alphabet, Repr]): Repr = {
+      val builder = cbf.newBuilder
       for (label <- labels) {
         builder ++= label.value[Alphabet, Repr](getSubsequence)
       }

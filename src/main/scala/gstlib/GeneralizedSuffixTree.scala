@@ -40,7 +40,7 @@ package gstlib
 
 import gstlib.GeneralizedSuffixTreeBuilder.{Sequence, SequenceID}
 
-import scala.collection.generic.CanBuildFrom
+import scala.collection.Factory
 import scala.collection.mutable
 
 trait GeneralizedSuffixTree[Alphabet, Repr] {
@@ -266,7 +266,7 @@ object GeneralizedSuffixTree {
     * @tparam Repr     type of the sequences
     * @return a new generalized suffix tree with the specified sequences
     */
-  def apply[Alphabet, Repr <% Sequence[Alphabet]](sequences: Repr*)(implicit icbf: CanBuildFrom[Repr, Alphabet, Repr]): GeneralizedSuffixTree[Alphabet, Repr] = {
+  def apply[Alphabet, Repr <% Sequence[Alphabet]](sequences: Repr*)(implicit icbf: Factory[Alphabet, Repr]): GeneralizedSuffixTree[Alphabet, Repr] = {
     if(sequences.nonEmpty) {
       val stree = GeneralizedSuffixTreeBuilder.empty[Alphabet, Repr]()
 
@@ -288,7 +288,7 @@ object GeneralizedSuffixTree {
     * @return a new builder for a generalized suffix tree
     */
   def newBuilder[Alphabet, Repr <% Sequence[Alphabet]](
-                                                        implicit icbf: CanBuildFrom[Repr, Alphabet, Repr]): mutable.Builder[Repr, GeneralizedSuffixTree[Alphabet, Repr]] =
+                                                        implicit icbf: Factory[Alphabet, Repr]): mutable.Builder[Repr, GeneralizedSuffixTree[Alphabet, Repr]] =
     GeneralizedSuffixTreeBuilder.empty[Alphabet, Repr]()
 
 
@@ -301,7 +301,7 @@ object GeneralizedSuffixTree {
   def longestSubsequence[Alphabet, Repr <% Sequence[Alphabet]](
                                                                 seq1: Repr,
                                                                 seq2: Repr)(
-                                                                implicit icbf: CanBuildFrom[Repr, Alphabet, Repr]): Option[Repr] = {
+                                                                implicit icbf: Factory[Alphabet, Repr]): Option[Repr] = {
     //
     val stree = GeneralizedSuffixTreeBuilder.empty[Alphabet, Repr]()
     stree.insert(seq1)
