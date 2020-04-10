@@ -39,7 +39,7 @@ package gstlib
 
 import gstlib.GeneralizedSuffixTreeBuilder.Sequence
 
-import scala.collection.Factory
+
 
 /**
   * Represents a generic suffix tree built from a sequence of items
@@ -81,7 +81,7 @@ object SuffixTree {
     * @tparam Repr type of the sequence of items
     * @return an empty suffix tree
     */
-  def empty[Alphabet, Repr <% Sequence[Alphabet]] : SuffixTree[Alphabet, Repr] = {
+  def empty[Alphabet, Repr]: SuffixTree[Alphabet, Repr] = {
     new SuffixTree[Alphabet, Repr] {
       def sequence = throw new UnsupportedOperationException("No available sequence in this empty suffix tree")
 
@@ -103,10 +103,10 @@ object SuffixTree {
     * @tparam Repr type of the sequence of items
     * @return a suffix tree of the given sequence
     */
-  def apply[Alphabet, Repr <% Sequence[Alphabet]](seq: Repr)(implicit icbf: Factory[Alphabet, Repr]): SuffixTree[Alphabet, Repr] = {
+  def apply[Alphabet, Repr](seq: Repr)(implicit ev: Repr => Sequence[Alphabet], icbf: Factory[Alphabet, Repr]): SuffixTree[Alphabet, Repr] = {
     if(seq.nonEmpty) {
 
-      val stree = GeneralizedSuffixTreeBuilder.empty[Alphabet, Repr]()
+      val stree = GeneralizedSuffixTreeBuilder.empty[Alphabet, Repr]
       stree.insert(seq)
 
       new SuffixTree[Alphabet, Repr] {

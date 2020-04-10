@@ -58,7 +58,7 @@ object GeneralizedSuffixTreeBuilderLinearityBenchmark extends App {
   ) withWarmer (new Warmer.Default)
 
   def buildStringSuffixTree() =
-    GeneralizedSuffixTreeBuilder.empty[Char, Array[Char]]()
+    GeneralizedSuffixTreeBuilder.empty[Char, Array[Char]]
 
   val filenames = List(
     "pg21782A.txt", "pg21782B.txt", "pg21782C.txt", "pg21782D.txt",

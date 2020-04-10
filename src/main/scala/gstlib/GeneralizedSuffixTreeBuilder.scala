@@ -38,7 +38,7 @@
 package gstlib
 
 import scala.annotation.tailrec
-import scala.collection.{Factory, mutable}
+import scala.collection.mutable
 import GeneralizedSuffixTreeBuilder._
 import InnerTree._
 
@@ -51,10 +51,10 @@ import InnerTree._
   */
 protected[gstlib] sealed abstract class GeneralizedSuffixTreeBuilder[Alphabet, Repr](implicit ev: Repr => Sequence[Alphabet])
   extends GeneralizedSuffixTree[Alphabet, Repr]
-    with mutable.Builder[Repr, GeneralizedSuffixTree[Alphabet, Repr]] {
+    with Builder[Repr, GeneralizedSuffixTree[Alphabet, Repr]] {
   implicit val cbf: Factory[Alphabet, Repr]
 
-  def addOne(elem: Repr): GeneralizedSuffixTreeBuilder.this.type ={
+  def addOne(elem: Repr): GeneralizedSuffixTreeBuilder.this.type = {
     this.insert(elem)
     this
   }
@@ -1141,7 +1141,7 @@ reprs: ${parentsPathLabel.mkString(", ")}
         }
 
     new CommonSubsequences[Repr] {
-      private val acc = accumulator.mapValues { l => toIteratorHelper(l) }.toMap
+      private val acc = accumulator.view.map { case(k, l) => k -> toIteratorHelper(l) }.toMap
       private val sizes = sizesImpl.toMap
       private val longests = longestsImpl.toMap
 
@@ -1964,12 +1964,15 @@ object GeneralizedSuffixTreeBuilder {
     * @tparam Repr     type of the sequences
     * @return a new empty generalized suffix tree builder
     */
-  protected[gstlib] def empty[Alphabet, Repr]()(implicit ev: Repr => Sequence[Alphabet], icbf: Factory[Alphabet, Repr]): GeneralizedSuffixTreeBuilder[Alphabet, Repr] =
-    new GeneralizedSuffixTreeBuilder[Alphabet, Repr]() {
+  protected[gstlib] def empty[Alphabet, Repr](implicit
+                                              ev: Repr => Sequence[Alphabet],
+                                              icbf: Factory[Alphabet, Repr]): GeneralizedSuffixTreeBuilder[Alphabet, Repr] =
+    new GeneralizedSuffixTreeBuilder[Alphabet, Repr] {
       val cbf: Factory[Alphabet, Repr] = icbf
       val generator: Generator[SequenceID] = uniqueTerminalSymbolGeneratorInt()
 
       def generateUniqueTerminalSymbol(): SequenceID = generator.next()
+
     }
 
   val DEBUG = false

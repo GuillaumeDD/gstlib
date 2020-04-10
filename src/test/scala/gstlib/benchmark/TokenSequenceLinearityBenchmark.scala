@@ -60,7 +60,7 @@ object TokenSequenceLinearityBenchmark extends App {
   type TokenizedUtterance = Array[String]
 
   def buildStringSuffixTree() =
-    GeneralizedSuffixTreeBuilder.empty[Char, Array[Char]]()
+    GeneralizedSuffixTreeBuilder.empty[Char, Array[Char]]
 
   val filenames = List(
     "pg21782A.txt", "pg21782B.txt", "pg21782C.txt", "pg21782D.txt",
@@ -79,7 +79,7 @@ object TokenSequenceLinearityBenchmark extends App {
     val size = lines.size // size in number of tokens
 
     val time = standardConfig measure {
-      val stree = GeneralizedSuffixTreeBuilder.empty[Token, TokenizedUtterance]()
+      val stree = GeneralizedSuffixTreeBuilder.empty[Token, TokenizedUtterance]
       stree.insert(lines)
     }
     println(s"$size\t$time")
