@@ -37,7 +37,7 @@
  */
 package gstlib.benchmark
 
-import gstlib.GeneralizedSuffixTreeBuilder
+import gstlib.{GeneralizedSuffixTreeBuilder, unsafeArrayToSeq}
 
 import scala.io.Source
 import org.scalameter._
@@ -50,6 +50,10 @@ import org.scalameter._
   * @author Guillaume Dubuisson Duplessis
   */
 object GeneralizedSuffixTreeBuilderLinearityBenchmark extends App {
+
+  implicit val arrayToSeqChr: Array[Char] => Seq[Char] = unsafeArrayToSeq[Char]
+  implicit val arrayToSeqStr: Array[String] => Seq[String] = unsafeArrayToSeq[String]
+
   val standardConfig = config(
     Key.exec.minWarmupRuns -> 20,
     Key.exec.maxWarmupRuns -> 40,
