@@ -39,6 +39,7 @@ package gstlib
 
 import scala.annotation.tailrec
 import scala.collection.mutable
+import scala.collection
 import GeneralizedSuffixTreeBuilder._
 import InnerTree._
 
@@ -1188,7 +1189,7 @@ reprs: ${parentsPathLabel.mkString(", ")}
 
     def isEmpty: Boolean
 
-    def slice(i: Int, j: Int): Seq[Alphabet]
+    def slice(i: Int, j: Int): collection.Seq[Alphabet]
 
     def seq: Repr
   }
@@ -1212,7 +1213,7 @@ reprs: ${parentsPathLabel.mkString(", ")}
       def isEmpty: Boolean =
         seq.isEmpty
 
-      def slice(i: Int, j: Int): Seq[Alphabet] =
+      def slice(i: Int, j: Int): collection.Seq[Alphabet] =
         seq.slice(i, j)
 
       override def toString = s"$seq"
@@ -1237,7 +1238,7 @@ reprs: ${parentsPathLabel.mkString(", ")}
       def isEmpty: Boolean =
         seq.isEmpty
 
-      def slice(i: Int, j: Int): Seq[Alphabet] =
+      def slice(i: Int, j: Int): collection.Seq[Alphabet] =
         seq.slice(i, j)
 
       override def toString = s"$seq{$uniqueTerminalSymbol}"
@@ -1938,7 +1939,7 @@ object GeneralizedSuffixTreeBuilder {
   type Generator[T] = Iterator[T]
   type GeneratorProvider[T] = () => Generator[T]
   type SequenceID = Int
-  type Sequence[T] = Seq[T]
+  type Sequence[T] = collection.Seq[T]
   type TerminalSymbol = Int
 
   /*

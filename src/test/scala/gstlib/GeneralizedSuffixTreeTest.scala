@@ -47,8 +47,6 @@ import scala.io.Source
   */
 class GeneralizedSuffixTreeTest extends AnyFunSuite {
 
-  implicit val arrayToSeq: Array[String] => Seq[String] = gstlib.unsafeArrayToSeq[String]
-
   trait BuiltTree {
     val builder = GeneralizedSuffixTree.newBuilder[Char, String]
 

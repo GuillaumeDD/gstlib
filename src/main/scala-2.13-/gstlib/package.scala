@@ -18,6 +18,4 @@ package object gstlib {
     }
   }
 
-  def unsafeArrayToSeq[T](a: Array[T]): Seq[T] = genericWrapArray(a)
-
 }
