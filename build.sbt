@@ -7,7 +7,7 @@ lazy val commonSettings = Seq(
   organization := "com.github.guillaumedd",
   version := "0.1.2",
   scalaVersion := "2.11.12",
-  crossScalaVersions := Seq("2.11.12", "2.12.4", "2.13.1")
+  crossScalaVersions := Seq("2.11.12", "2.12.11", "2.13.1")
 )
 
 lazy val root = (project in file(".")).
