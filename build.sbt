@@ -6,7 +6,7 @@ val scalameter = "com.storm-enroute" %% "scalameter" % "0.19" % "test"
 lazy val commonSettings = Seq(
   organization := "com.github.guillaumedd",
   version := "0.1.2",
-  scalaVersion := "2.11.12",
+  scalaVersion := "2.13.1",
   crossScalaVersions := Seq("2.11.12", "2.12.11", "2.13.1")
 )
 
@@ -52,7 +52,7 @@ developers := List(
   Developer(
     id = "GuillaumeDD",
     name = "Guillaume Dubuisson Duplessis",
-    email = "gdubuisson@limsi.fr",
+    email = "guillaume@dubuissonduplessis.fr",
     url = url("http://www.dubuissonduplessis.fr/")
   )
 )
