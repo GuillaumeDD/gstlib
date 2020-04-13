@@ -3,7 +3,7 @@
 gstlib  is  a   library  that  implements  a   generalized  suffix  tree
 datastructure for sequences of items in the Scala programming language.
 
-Latest version: 0.1.2
+Latest version: 0.1.3
 
 Features:
 
@@ -24,13 +24,13 @@ Biology" by D. Gusfield:
 
 ## Getting gstlib ##
 
-gstlib is available for Scala 2.11 and 2.12.
+gstlib is available for Scala 2.11, 2.12 and 2.13.
 
 Usage with SBT, adding a dependency  to the latest version of the gstlib
 to your sbt build definition file:
 
 ```scala
-libraryDependencies += "com.github.guillaumedd" %% "gstlib" % "0.1.2"
+libraryDependencies += "com.github.guillaumedd" %% "gstlib" % "0.1.3"
 ```
 
 ## Usage ##
@@ -207,8 +207,9 @@ Files to benchmark the code come from the repository:
 
 ## Contributors ##
 
-- Guillaume Dubuisson Duplessis (2016-2017)
+- Guillaume Dubuisson Duplessis (2016-present)
 - Vincent Letard (2016)
+- Torsten Rudolf (2020)
 
 ## Usage for Research Purposes ##
 

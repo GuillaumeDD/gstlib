@@ -5,7 +5,7 @@ val scalameter = "com.storm-enroute" %% "scalameter" % "0.19" % "test"
 
 lazy val commonSettings = Seq(
   organization := "com.github.guillaumedd",
-  version := "0.1.2",
+  version := "0.1.3",
   scalaVersion := "2.13.1",
   crossScalaVersions := Seq("2.11.12", "2.12.11", "2.13.1")
 )
@@ -36,39 +36,3 @@ unmanagedSourceDirectories in Compile ++= {
     }
   }
 }
-
-licenses := Seq("CeCILL-B" -> url("http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.html"))
-
-homepage := Some(url("https://github.com/GuillaumeDD/gstlib"))
-
-scmInfo := Some(
-  ScmInfo(
-    url("https://github.com/GuillaumeDD/gstlib"),
-    "scm:git@github.com:GuillaumeDD/gstlib.git"
-  )
-)
-
-developers := List(
-  Developer(
-    id = "GuillaumeDD",
-    name = "Guillaume Dubuisson Duplessis",
-    email = "guillaume@dubuissonduplessis.fr",
-    url = url("http://www.dubuissonduplessis.fr/")
-  )
-)
-
-publishMavenStyle := true
-
-publishArtifact in Test := false
-
-pomIncludeRepository := { _ => false }
-
-publishTo := {
-  val nexus = "https://oss.sonatype.org/"
-  if (isSnapshot.value)
-    Some("snapshots" at nexus + "content/repositories/snapshots")
-  else
-    Some("releases" at nexus + "service/local/staging/deploy/maven2")
-}
-
-
