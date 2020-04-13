@@ -40,7 +40,6 @@ package gstlib
 
 import gstlib.GeneralizedSuffixTreeBuilder.{Sequence, SequenceID}
 
-import scala.collection.generic.CanBuildFrom
 import scala.collection.mutable
 
 trait GeneralizedSuffixTree[Alphabet, Repr] {
@@ -200,9 +199,9 @@ trait CommonSubsequences[Repr] {
     */
   def toIterator: Iterator[(Int, Repr)] =
     for {
-      occ <- occurrences.toIterator
-      subpattern <- this (occ)
-    } yield ((occ, subpattern))
+      occ <- occurrences.iterator
+      subPattern <- this (occ)
+    } yield (occ, subPattern)
 
 }
 
@@ -232,31 +231,32 @@ object GeneralizedSuffixTree {
     * @tparam Repr type of the sequences
     * @return a new empty generalized suffix tree
     */
-  def empty[Alphabet, Repr <% Sequence[Alphabet]]: GeneralizedSuffixTree[Alphabet, Repr] = new GeneralizedSuffixTree[Alphabet, Repr] {
-    def getSequenceBy(id: SequenceID): Repr =
-      throw new UnsupportedOperationException("Empty tree does not contain any sequence")
+  def empty[Alphabet, Repr]: GeneralizedSuffixTree[Alphabet, Repr] =
+    new GeneralizedSuffixTree[Alphabet, Repr] {
+      def getSequenceBy(id: SequenceID): Repr =
+        throw new UnsupportedOperationException("Empty tree does not contain any sequence")
 
-    val size = 0
+      val size = 0
 
-    def fullSequences(): Iterator[Repr] = Iterator.empty
+      def fullSequences(): Iterator[Repr] = Iterator.empty
 
-    def suffixes(): Iterator[Repr] = Iterator.empty
+      def suffixes(): Iterator[Repr] = Iterator.empty
 
-    val nSuffixes = 0
+      val nSuffixes = 0
 
-    def findLongestCommonSubsequences(pattern: Repr): Seq[(Int, Int, Set[(SequenceID, Int)])] =
-      Seq.empty
+      def findLongestCommonSubsequences(pattern: Repr): Seq[(Int, Int, Set[(SequenceID, Int)])] =
+        Seq.empty
 
-    def find(pattern: Repr): List[(SequenceID, Int)] = List.empty
+      def find(pattern: Repr): List[(SequenceID, Int)] = List.empty
 
-    def contains(pattern: Repr): Boolean = false
+      def contains(pattern: Repr): Boolean = false
 
-    def multipleCommonSubsequence(): CommonSubsequences[Repr] =
-      CommonSubsequences.empty
+      def multipleCommonSubsequence(): CommonSubsequences[Repr] =
+        CommonSubsequences.empty
 
-    def bulkMultipleCommonSubsequence(): Iterator[(Int, Repr)] =
-      Iterator.empty
-  }
+      def bulkMultipleCommonSubsequence(): Iterator[(Int, Repr)] =
+        Iterator.empty
+    }
 
   /**
     * Creates a generalized suffix tree with the specified sequences
@@ -266,9 +266,10 @@ object GeneralizedSuffixTree {
     * @tparam Repr     type of the sequences
     * @return a new generalized suffix tree with the specified sequences
     */
-  def apply[Alphabet, Repr <% Sequence[Alphabet]](sequences: Repr*)(implicit icbf: CanBuildFrom[Repr, Alphabet, Repr]): GeneralizedSuffixTree[Alphabet, Repr] = {
+  def apply[Alphabet, Repr](sequences: Repr*)
+                           (implicit ev: Repr => Sequence[Alphabet], icbf: Factory[Alphabet, Repr]): GeneralizedSuffixTree[Alphabet, Repr] = {
     if(sequences.nonEmpty) {
-      val stree = GeneralizedSuffixTreeBuilder.empty[Alphabet, Repr]()
+      val stree = GeneralizedSuffixTreeBuilder.empty[Alphabet, Repr]
 
       for (item <- sequences) {
         stree.insert(item)
@@ -287,9 +288,8 @@ object GeneralizedSuffixTree {
     * @tparam Repr     type of the sequences
     * @return a new builder for a generalized suffix tree
     */
-  def newBuilder[Alphabet, Repr <% Sequence[Alphabet]](
-                                                        implicit icbf: CanBuildFrom[Repr, Alphabet, Repr]): mutable.Builder[Repr, GeneralizedSuffixTree[Alphabet, Repr]] =
-    GeneralizedSuffixTreeBuilder.empty[Alphabet, Repr]()
+  def newBuilder[Alphabet, Repr](implicit ev: Repr => Sequence[Alphabet], icbf: Factory[Alphabet, Repr]): mutable.Builder[Repr, GeneralizedSuffixTree[Alphabet, Repr]] =
+    GeneralizedSuffixTreeBuilder.empty[Alphabet, Repr]
 
 
   /**
@@ -298,12 +298,10 @@ object GeneralizedSuffixTree {
     * @return an option consisting of the longest subsequence, or None if
     *         it does not exist
     */
-  def longestSubsequence[Alphabet, Repr <% Sequence[Alphabet]](
-                                                                seq1: Repr,
-                                                                seq2: Repr)(
-                                                                implicit icbf: CanBuildFrom[Repr, Alphabet, Repr]): Option[Repr] = {
+  def longestSubsequence[Alphabet, Repr](seq1: Repr, seq2: Repr)
+                                        (implicit ev: Repr => Sequence[Alphabet], icbf: Factory[Alphabet, Repr]): Option[Repr] = {
     //
-    val stree = GeneralizedSuffixTreeBuilder.empty[Alphabet, Repr]()
+    val stree = GeneralizedSuffixTreeBuilder.empty[Alphabet, Repr]
     stree.insert(seq1)
     stree.insert(seq2)
     val it = (stree.multipleCommonSubsequence()) (2)

@@ -37,12 +37,12 @@
  */
 package gstlib
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
 /**
   * @author Guillaume Dubuisson Duplessis
   */
-class GeneralizedSuffixTreeBuilderTest extends FunSuite {
+class GeneralizedSuffixTreeBuilderTest extends AnyFunSuite {
 
 
   test("Builder method: +=, result and clear") {
@@ -89,7 +89,7 @@ class GeneralizedSuffixTreeBuilderTest extends FunSuite {
       List("a", "nice", "library", ".")
     )
 
-    streeBuilder ++= utterances.toIterator
+    streeBuilder ++= utterances.iterator
     val stree = streeBuilder.result()
     assert(stree.size == 3)
     assert(stree.getSequenceBy(0) == List("foo", "bar"))

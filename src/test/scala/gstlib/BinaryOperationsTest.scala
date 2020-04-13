@@ -37,13 +37,13 @@
  */
 package gstlib
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import BinaryOperations._
 
 /**
  * @author Guillaume Dubuisson Duplessis
  */
-class BinaryOperationsTest extends FunSuite {
+class BinaryOperationsTest extends AnyFunSuite {
 
   test("shiftRight") {
     assert(shiftRight(2, 1) == 1)

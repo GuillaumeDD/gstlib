@@ -50,6 +50,7 @@ import org.scalameter._
   * @author Guillaume Dubuisson Duplessis
   */
 object GeneralizedSuffixTreeBuilderLinearityBenchmark extends App {
+
   val standardConfig = config(
     Key.exec.minWarmupRuns -> 20,
     Key.exec.maxWarmupRuns -> 40,
@@ -58,7 +59,7 @@ object GeneralizedSuffixTreeBuilderLinearityBenchmark extends App {
   ) withWarmer (new Warmer.Default)
 
   def buildStringSuffixTree() =
-    GeneralizedSuffixTreeBuilder.empty[Char, Array[Char]]()
+    GeneralizedSuffixTreeBuilder.empty[Char, Array[Char]]
 
   val filenames = List(
     "pg21782A.txt", "pg21782B.txt", "pg21782C.txt", "pg21782D.txt",

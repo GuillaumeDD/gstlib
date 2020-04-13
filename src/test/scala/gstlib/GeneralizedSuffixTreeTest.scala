@@ -38,14 +38,14 @@
 package gstlib
 
 import GeneralizedSuffixTree._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
 import scala.io.Source
 
 /**
   * @author Guillaume Dubuisson Duplessis
   */
-class GeneralizedSuffixTreeTest extends FunSuite {
+class GeneralizedSuffixTreeTest extends AnyFunSuite {
 
   trait BuiltTree {
     val builder = GeneralizedSuffixTree.newBuilder[Char, String]

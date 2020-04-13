@@ -37,15 +37,16 @@
  */
 package gstlib
 import scala.collection.mutable
-import GeneralizedSuffixTreeBuilder.{ Sequence, SequenceID, TerminalSymbol, debugging }
+import GeneralizedSuffixTreeBuilder.{Sequence, SequenceID, TerminalSymbol, debugging}
+
 import scala.annotation.tailrec
-import scala.collection.generic.CanBuildFrom
+
 
 protected[gstlib] object InnerTree {
   val END: SequenceID = -1
   type Nodes = mutable.Map[Any, NonRootNode]
   def emptyNodes[Repr](): Nodes =
-    mutable.OpenHashMap[Any, NonRootNode]()
+    mutable.HashMap[Any, NonRootNode]()
 
   /**
    * Represents a walkable sequence of the inner tree algorithms
@@ -61,8 +62,8 @@ protected[gstlib] object InnerTree {
    *
    */
   sealed abstract class DefiniteLabel {
-    def value[Alphabet, Repr <% Sequence[Alphabet]](
-      getSubsequence: ((SequenceID, Int, Int) => Repr))(implicit cbf: CanBuildFrom[Repr, Alphabet, Repr]): Repr
+    def value[Alphabet, Repr](
+      getSubsequence: ((SequenceID, Int, Int) => Repr))(implicit ev: Repr => Sequence[Alphabet], cbf: Factory[Alphabet, Repr]): Repr
     def length: Int
   }
 
@@ -70,8 +71,8 @@ protected[gstlib] object InnerTree {
       sequenceID: SequenceID,
       from: Int,
       to: Int) extends DefiniteLabel {
-    def value[Alphabet, Repr <% Sequence[Alphabet]](
-      getSubsequence: ((SequenceID, Int, Int) => Repr))(implicit cbf: CanBuildFrom[Repr, Alphabet, Repr]): Repr =
+    def value[Alphabet, Repr](getSubsequence: (SequenceID, Int, Int) => Repr)
+                             (implicit ev: Repr => Sequence[Alphabet], cbf: Factory[Alphabet, Repr]): Repr =
       getSubsequence(sequenceID, from - 1, to)
 
     def length: Int = (to - from + 1)
@@ -82,9 +83,9 @@ protected[gstlib] object InnerTree {
 
   case class CompositeLabel(
       labels: List[SingleLabel]) extends DefiniteLabel {
-    def value[Alphabet, Repr <% Sequence[Alphabet]](
-      getSubsequence: ((SequenceID, Int, Int) => Repr))(implicit cbf: CanBuildFrom[Repr, Alphabet, Repr]): Repr = {
-      val builder = cbf()
+    def value[Alphabet, Repr](getSubsequence: (SequenceID, Int, Int) => Repr)
+                             (implicit ev: Repr => Sequence[Alphabet], cbf: Factory[Alphabet, Repr]): Repr = {
+      val builder = cbf.newBuilder
       for (label <- labels) {
         builder ++= label.value[Alphabet, Repr](getSubsequence)
       }
@@ -360,10 +361,9 @@ protected[gstlib] object InnerTree {
      * Computes the value of this label
      * @param currentEnd optional end index (if the end is not the real end)
      */
-    def value[Alphabet, Repr <% Sequence[Alphabet]](
-      sliceSequenceBy: ((SequenceID, Int, Int) => Repr),
-      dropSequenceBy: ((SequenceID, Int) => Repr),
-      currentEnd: Option[Int] = None): Repr =
+    def value[Alphabet, Repr](sliceSequenceBy: (SequenceID, Int, Int) => Repr,
+                              dropSequenceBy: (SequenceID, Int) => Repr,
+                              currentEnd: Option[Int] = None): Repr =
       currentEnd match {
         case Some(endIndex) =>
           if (to == END) {
@@ -396,9 +396,8 @@ protected[gstlib] object InnerTree {
      *        the full sequence should be considered
      * @return the length of this label
      */
-    def length[Alphabet, Repr <% Sequence[Alphabet]](
-      getSequenceLength: (SequenceID => Int),
-      currentEnd: Option[Int] = None): Int =
+    def length[Alphabet, Repr](getSequenceLength: SequenceID => Int,
+                               currentEnd: Option[Int] = None): Int =
       currentEnd match {
         case Some(currentEnd) =>
           if (to == END) {

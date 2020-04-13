@@ -38,8 +38,8 @@
 package gstlib
 
 import scala.annotation.tailrec
-import scala.collection.generic.CanBuildFrom
 import scala.collection.mutable
+import scala.collection
 import GeneralizedSuffixTreeBuilder._
 import InnerTree._
 
@@ -50,12 +50,12 @@ import InnerTree._
   * @tparam Alphabet type of the items in the sequences
   * @tparam Repr type of the sequences
   */
-protected[gstlib] sealed abstract class GeneralizedSuffixTreeBuilder[Alphabet, Repr <% Sequence[Alphabet]]
+protected[gstlib] sealed abstract class GeneralizedSuffixTreeBuilder[Alphabet, Repr](implicit ev: Repr => Sequence[Alphabet])
   extends GeneralizedSuffixTree[Alphabet, Repr]
-    with mutable.Builder[Repr, GeneralizedSuffixTree[Alphabet, Repr]] {
-  implicit val cbf: CanBuildFrom[Repr, Alphabet, Repr]
+    with Builder[Repr, GeneralizedSuffixTree[Alphabet, Repr]] {
+  implicit val cbf: Factory[Alphabet, Repr]
 
-  def +=(elem: Repr): GeneralizedSuffixTreeBuilder.this.type ={
+  def addOne(elem: Repr): GeneralizedSuffixTreeBuilder.this.type = {
     this.insert(elem)
     this
   }
@@ -996,9 +996,9 @@ reprs: ${parentsPathLabel.mkString(", ")}
               val result = if (nbAppearance > 1) {
                 // Node is eligible, adding its path to the multiple common patterns
                 val builder = if (parentsPathLabel.isEmpty) {
-                  cbf()
+                  cbf.newBuilder
                 } else {
-                  cbf() ++= parentsPathLabel.head // appending the parent path-label
+                  cbf.newBuilder ++= parentsPathLabel.head // appending the parent path-label
                 }
                 builder ++= node.toDefiniteLabel(getSequenceLengthBy).value(getSubsequenceBy)
                 val result = builder.result()
@@ -1142,7 +1142,7 @@ reprs: ${parentsPathLabel.mkString(", ")}
         }
 
     new CommonSubsequences[Repr] {
-      private val acc = accumulator.mapValues { l => toIteratorHelper(l) }.toMap
+      private val acc = accumulator.view.map { case(k, l) => k -> toIteratorHelper(l) }.toMap
       private val sizes = sizesImpl.toMap
       private val longests = longestsImpl.toMap
 
@@ -1189,7 +1189,7 @@ reprs: ${parentsPathLabel.mkString(", ")}
 
     def isEmpty: Boolean
 
-    def slice(i: Int, j: Int): Seq[Alphabet]
+    def slice(i: Int, j: Int): collection.Seq[Alphabet]
 
     def seq: Repr
   }
@@ -1213,7 +1213,7 @@ reprs: ${parentsPathLabel.mkString(", ")}
       def isEmpty: Boolean =
         seq.isEmpty
 
-      def slice(i: Int, j: Int): Seq[Alphabet] =
+      def slice(i: Int, j: Int): collection.Seq[Alphabet] =
         seq.slice(i, j)
 
       override def toString = s"$seq"
@@ -1238,7 +1238,7 @@ reprs: ${parentsPathLabel.mkString(", ")}
       def isEmpty: Boolean =
         seq.isEmpty
 
-      def slice(i: Int, j: Int): Seq[Alphabet] =
+      def slice(i: Int, j: Int): collection.Seq[Alphabet] =
         seq.slice(i, j)
 
       override def toString = s"$seq{$uniqueTerminalSymbol}"
@@ -1268,13 +1268,13 @@ reprs: ${parentsPathLabel.mkString(", ")}
     _sequences(id).length
 
   def getSubsequenceBy(id: SequenceID, from: Int, until: Int): Repr = {
-    val builder = cbf()
+    val builder = cbf.newBuilder
     builder ++= _sequences(id).slice(from, until)
     builder.result()
   }
 
   def dropSequenceBy(id: SequenceID, n: Int): Repr = {
-    val builder = cbf()
+    val builder = cbf.newBuilder
     builder ++= _sequences(id).seq.drop(n)
     builder.result()
   }
@@ -1309,7 +1309,7 @@ reprs: ${parentsPathLabel.mkString(", ")}
     *
     */
   protected def labelPartial(currentID: SequenceID, currentEnd: Int)(node: NonRootNode): Repr = {
-    val builder = cbf()
+    val builder = cbf.newBuilder
     val edgeLabels = node
       // obtain the path label
       .pathLabel
@@ -1939,7 +1939,7 @@ object GeneralizedSuffixTreeBuilder {
   type Generator[T] = Iterator[T]
   type GeneratorProvider[T] = () => Generator[T]
   type SequenceID = Int
-  type Sequence[T] = Seq[T]
+  type Sequence[T] = collection.Seq[T]
   type TerminalSymbol = Int
 
   /*
@@ -1965,13 +1965,15 @@ object GeneralizedSuffixTreeBuilder {
     * @tparam Repr     type of the sequences
     * @return a new empty generalized suffix tree builder
     */
-  protected[gstlib] def empty[Alphabet, Repr <% Sequence[Alphabet]]()(
-    implicit icbf: CanBuildFrom[Repr, Alphabet, Repr]): GeneralizedSuffixTreeBuilder[Alphabet, Repr] =
-    new GeneralizedSuffixTreeBuilder[Alphabet, Repr]() {
-      val cbf: CanBuildFrom[Repr, Alphabet, Repr] = icbf
+  protected[gstlib] def empty[Alphabet, Repr](implicit
+                                              ev: Repr => Sequence[Alphabet],
+                                              icbf: Factory[Alphabet, Repr]): GeneralizedSuffixTreeBuilder[Alphabet, Repr] =
+    new GeneralizedSuffixTreeBuilder[Alphabet, Repr] {
+      val cbf: Factory[Alphabet, Repr] = icbf
       val generator: Generator[SequenceID] = uniqueTerminalSymbolGeneratorInt()
 
       def generateUniqueTerminalSymbol(): SequenceID = generator.next()
+
     }
 
   val DEBUG = false
