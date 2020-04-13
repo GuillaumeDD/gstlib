@@ -1,4 +1,3 @@
-import scala.collection.immutable.ArraySeq
 import scala.collection.mutable
 
 package object gstlib {
